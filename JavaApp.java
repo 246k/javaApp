@@ -27,38 +27,47 @@ public class JavaApp {
             int i = 0;
             int gmat;
             int gre;
+            Float gpa;
+            String first;
+            String last;
+            String zNumber;
+            String gpaString;
+            String gmatString;
+            String greString;
             
             Student student;
 
             String file = "/Users/kkraynak/Documents/NetBeansProjects/JavaApp/accounting-students/student-list.txt";
+            
             Scanner scanner = new Scanner(new File(file));
             while (scanner.hasNextLine()) {
-                System.out.println("\nApplicant #" + (i + 1));
-                String first = scanner.next();
-                String last = scanner.next();
-                String zNumber = scanner.next();
-                String gpaS = scanner.next();
-                float gpa = Float.valueOf(gpaS);
-                String gmatS = scanner.next();
-                if ("NA".equals(gmatS)) {
-                    gmat = 0;
-                } else {
-                    gmat = Integer.valueOf(gmatS);
-                }
-                String greS = scanner.next();
-                if ("NA".equals(greS)) {
-                    gre = 0;
-                } else {
-                    gre = Integer.valueOf(greS);
-                }
+                
+                first = scanner.next();
+                last = scanner.next();
+                zNumber = scanner.next();
+                gpaString = scanner.next();
+                gmatString = scanner.next();
+                greString = scanner.next();
 
-                student = new Student(i, first, last, zNumber, gpa, gmat, gre);
-
+                student = new Student(i, first, last, zNumber, gpaString, gmatString, greString);
+                
+                System.out.println("\nApplicant #" + student.number);
                 System.out.println("Full name: " + student.firstName + " " + student.lastName);
                 System.out.println("Z Number: " + student.ZNumber);
                 System.out.println("GPA: " + student.gpa);
-                System.out.println("GMAT Score: " + student.gmat);
-                System.out.println("GRE score: " + student.gre);
+                
+                if(student.gmat == 0){
+                    System.out.println("GMAT Score: NA");
+                }else{
+                    System.out.println("GMAT Score: " + student.gmat);
+                }
+                
+                if(student.gre == 0){
+                    System.out.println("GRE Score: NA");
+                }else{
+                    System.out.println("GRE score: " + student.gre);
+                }
+                
                 System.out.println("Admission suggestion: " + student.suggestion);
                 i++;
             }
